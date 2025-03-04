@@ -29,6 +29,24 @@
             width: 100%;
             margin-top: 10px;
         }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn.active {
+            background: #ff4757;
+            color: white;
+        }
         .playlist {
             list-style: none;
             padding: 0;
@@ -57,26 +75,88 @@
             color: #555;
         }
     </style>
+    <script>
+        let playlist = [
+            { src: 'songs/Chi-Muon-Ben-Em-That-Gan.mp3', name: 'Chi Muốn Bên Em Thật Gần', image: 'images/Chi-Muon-Ben-Em-That-Gan.jpg' },
+            { src: 'songs/ChiMuonBenEmLucNay.mp3', name: 'Chỉ Muốn Bên Em Lúc Này', image: 'images/ChiMuonBenEmLucNay.jpg' },
+            { src: 'songs/Cho-Ngay-Cuoi-Em.mp3', name: 'Chờ Ngày Cưới Em', image: 'images/music-10.jpg' },
+            { src: 'songs/Dam-Cuoi-Nha.mp3', name: 'Đám Cưới Nha', image: 'images/Dam-cuoi-nha.jpg' },
+            { src: 'songs/Em-La-Nhat.mp3', name: 'Em Là Nhất', image: 'images/Em-La-Nhat.jpg' },
+            { src: 'songs/Hong-Nhan-Jack.mp3', name: 'Hồng Nhan', image: 'images/Hong-Nhan-Jack.jpg' },
+            { src: 'songs/See-Tinh.mp3', name: 'See Tình', image: 'images/See-Tinh.jpg' },
+            { src: 'songs/ViAnhLaGio-LilK-4766315.mp3', name: 'Vì Anh Là Gió', image: 'images/ViAnhLaGio-LilK-4766315.jpg' },
+            { src: 'songs/YeuDonPhuongLaGi.mp3', name: 'Yêu Đơn Phương Là Gì', image: 'images/Yeu-Don-Phuong.jpg' }
+        ];
+
+        let player;
+        let repeatMode = false;
+        let autoNext = false;
+        let currentIndex = 0;
+
+        window.onload = function () {
+            player = document.getElementById('player');
+            player.addEventListener('ended', function () {
+                if (repeatMode) {
+                    player.play();
+                } else if (autoNext) {
+                    nextSong();
+                }
+            });
+
+            const playlistContainer = document.querySelector('.playlist');
+            playlist.forEach((song, index) => {
+                let listItem = document.createElement('li');
+                listItem.textContent = song.name;
+                listItem.onclick = () => playSong(index);
+                playlistContainer.appendChild(listItem);
+            });
+        };
+
+        function playSong(index) {
+            currentIndex = index;
+            player.src = playlist[index].src;
+            player.play();
+            document.getElementById('songTitle').innerText = playlist[index].name;
+            document.getElementById('albumImage').src = playlist[index].image;
+        }
+
+        function toggleRepeat() {
+            repeatMode = !repeatMode;
+            if (repeatMode) {
+                autoNext = false;
+                document.getElementById('nextBtn').classList.remove('active');
+            }
+            document.getElementById('repeatBtn').classList.toggle('active', repeatMode);
+        }
+
+        function toggleAutoNext() {
+            autoNext = !autoNext;
+            if (autoNext) {
+                repeatMode = false;
+                document.getElementById('repeatBtn').classList.remove('active');
+            }
+            document.getElementById('nextBtn').classList.toggle('active', autoNext);
+        }
+
+        function nextSong() {
+            if (currentIndex < playlist.length - 1) {
+                playSong(currentIndex + 1);
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Album Nhạc Sôi Động</h1>
-        <img src="album.png" alt="Bìa Album">
-        <audio id="player" controls>
-            <source src="songs/Chi-Muon-Ben-Em-That-Gan.mp3" type="audio/mpeg">
-        </audio>
+        <img id="albumImage" src="images/Chi-Muon-Ben-Em-That-Gan.jpg" alt="Bìa Album">
+        <h2 id="songTitle">Chi Muốn Bên Em Thật Gần</h2>
+        <audio id="player" controls></audio>
+        <div class="controls">
+            <button id="repeatBtn" class="btn" onclick="toggleRepeat()">Lặp Lại</button>
+            <button id="nextBtn" class="btn" onclick="toggleAutoNext()">Phát Tiếp</button>
+        </div>
         <h2>Danh Sách Nhạc</h2>
-        <ul class="playlist">
-            <li onclick="document.getElementById('player').src='songs/Chi-Muon-Ben-Em-That-Gan.mp3'; document.getElementById('player').play();">Chi Muốn Bên Em Thật Gần</li>
-            <li onclick="document.getElementById('player').src='songs/ChiMuonBenEmLucNay.mp3'; document.getElementById('player').play();">Chỉ Muốn Bên Em Lúc Này</li>
-            <li onclick="document.getElementById('player').src='songs/Cho-Ngay-Cuoi-Em.mp3'; document.getElementById('player').play();">Chờ Ngày Cưới Em</li>
-            <li onclick="document.getElementById('player').src='songs/Dam-Cuoi-Nha.mp3'; document.getElementById('player').play();">Đám Cưới Nha</li>
-            <li onclick="document.getElementById('player').src='songs/Em-La-Nhat.mp3'; document.getElementById('player').play();">Em Là Nhất</li>
-            <li onclick="document.getElementById('player').src='songs/Hong-Nhan-Jack.mp3'; document.getElementById('player').play();">Hồng Nhan</li>
-            <li onclick="document.getElementById('player').src='songs/See-Tinh.mp3'; document.getElementById('player').play();">See Tình</li>
-            <li onclick="document.getElementById('player').src='songs/ViAnhLaGio-LilK-4766315.mp3'; document.getElementById('player').play();">Vì Anh Là Gió</li>
-            <li onclick="document.getElementById('player').src='songs/YeuDonPhuongLaGi.mp3'; document.getElementById('player').play();">Yêu Đơn Phương Là Gì</li>
-        </ul>
+        <ul class="playlist"></ul>
     </div>
     <div class="footer">
         <p>Thiết kế bởi <strong>Tâm</strong></p>
