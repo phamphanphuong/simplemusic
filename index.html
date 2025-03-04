@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Nhạc Sôi Động</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="author" content="Tâm">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .playlist {
+            list-style: none;
+            padding: 0;
+        }
+        .playlist li {
+            padding: 12px;
+            background: #ff6f61;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .playlist li:hover {
+            background: #ff4757;
+            transform: scale(1.05);
+        }
+        h1, h2 {
+            color: #d63447;
+        }
+        .footer {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Album Nhạc Sôi Động</h1>
+        <img src="album.png" alt="Bìa Album">
+        <audio id="player" controls>
+            <source src="songs/Chi-Muon-Ben-Em-That-Gan.mp3" type="audio/mpeg">
+        </audio>
+        <h2>Danh Sách Nhạc</h2>
+        <ul class="playlist">
+            <li onclick="document.getElementById('player').src='songs/Chi-Muon-Ben-Em-That-Gan.mp3'; document.getElementById('player').play();">Chi Muốn Bên Em Thật Gần</li>
+            <li onclick="document.getElementById('player').src='songs/ChiMuonBenEmLucNay.mp3'; document.getElementById('player').play();">Chỉ Muốn Bên Em Lúc Này</li>
+            <li onclick="document.getElementById('player').src='songs/Cho-Ngay-Cuoi-Em.mp3'; document.getElementById('player').play();">Chờ Ngày Cưới Em</li>
+            <li onclick="document.getElementById('player').src='songs/Dam-Cuoi-Nha.mp3'; document.getElementById('player').play();">Đám Cưới Nha</li>
+            <li onclick="document.getElementById('player').src='songs/Em-La-Nhat.mp3'; document.getElementById('player').play();">Em Là Nhất</li>
+            <li onclick="document.getElementById('player').src='songs/Hong-Nhan-Jack.mp3'; document.getElementById('player').play();">Hồng Nhan</li>
+            <li onclick="document.getElementById('player').src='songs/See-Tinh.mp3'; document.getElementById('player').play();">See Tình</li>
+            <li onclick="document.getElementById('player').src='songs/ViAnhLaGio-LilK-4766315.mp3'; document.getElementById('player').play();">Vì Anh Là Gió</li>
+            <li onclick="document.getElementById('player').src='songs/YeuDonPhuongLaGi.mp3'; document.getElementById('player').play();">Yêu Đơn Phương Là Gì</li>
+        </ul>
+    </div>
+    <div class="footer">
+        <p>Thiết kế bởi <strong>Tâm</strong></p>
+    </div>
+</body>
+</html>
