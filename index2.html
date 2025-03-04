@@ -10,7 +10,7 @@
         body {
             font-family: 'Arial', sans-serif;
             text-align: center;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffdde1);
             color: #333;
         }
         .container {
@@ -57,25 +57,35 @@
             color: #555;
         }
     </style>
+    <script>
+        function changeSong(songSrc, imgSrc) {
+            var player = document.getElementById('player');
+            var albumImg = document.getElementById('albumImg');
+            player.src = songSrc;
+            player.play();
+            albumImg.src = imgSrc;
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Album Nhạc Sôi Động</h1>
-        <img src="album.png" alt="Bìa Album">
+        <img id="albumImg" src="images/default.jpg" alt="Bìa Album">
         <audio id="player" controls>
             <source src="songs/Chi-Muon-Ben-Em-That-Gan.mp3" type="audio/mpeg">
         </audio>
         <h2>Danh Sách Nhạc</h2>
         <ul class="playlist">
-            <li onclick="document.getElementById('player').src='songs/Chi-Muon-Ben-Em-That-Gan.mp3'; document.getElementById('player').play();">Chi Muốn Bên Em Thật Gần</li>
-            <li onclick="document.getElementById('player').src='songs/ChiMuonBenEmLucNay.mp3'; document.getElementById('player').play();">Chỉ Muốn Bên Em Lúc Này</li>
-            <li onclick="document.getElementById('player').src='songs/Cho-Ngay-Cuoi-Em.mp3'; document.getElementById('player').play();">Chờ Ngày Cưới Em</li>
-            <li onclick="document.getElementById('player').src='songs/Dam-Cuoi-Nha.mp3'; document.getElementById('player').play();">Đám Cưới Nha</li>
-            <li onclick="document.getElementById('player').src='songs/Em-La-Nhat.mp3'; document.getElementById('player').play();">Em Là Nhất</li>
-            <li onclick="document.getElementById('player').src='songs/Hong-Nhan-Jack.mp3'; document.getElementById('player').play();">Hồng Nhan</li>
-            <li onclick="document.getElementById('player').src='songs/See-Tinh.mp3'; document.getElementById('player').play();">See Tình</li>
-            <li onclick="document.getElementById('player').src='songs/ViAnhLaGio-LilK-4766315.mp3'; document.getElementById('player').play();">Vì Anh Là Gió</li>
-            <li onclick="document.getElementById('player').src='songs/YeuDonPhuongLaGi.mp3'; document.getElementById('player').play();">Yêu Đơn Phương Là Gì</li>
+            <li onclick="changeSong('songs/Chi-Muon-Ben-Em-That-Gan.mp3', 'images/Chi-Muon-Ben-Em-That-Gan.jpg')">Chi Muốn Bên Em
+                Thật Gần</li>
+            <li onclick="changeSong('songs/ChiMuonBenEmLucNay.mp3', 'images/ChiMuonBenEmLucNay.jpg')">Chỉ Muốn Bên Em Lúc Này</li>
+            <li onclick="changeSong('songs/Cho-Ngay-Cuoi-Em.mp3', 'images/Cho-Ngay-Cuoi-Em.jpg')">Chờ Ngày Cưới Em</li>
+            <li onclick="changeSong('songs/Dam-Cuoi-Nha.mp3', 'images/Dam-Cuoi-Nha.jpg')">Đám Cưới Nha</li>
+            <li onclick="changeSong('songs/Em-La-Nhat.mp3', 'images/Em-La-Nhat.jpg')">Em Là Nhất</li>
+            <li onclick="changeSong('songs/Hong-Nhan-Jack.mp3', 'images/Hong-Nhan-Jack.jpg')">Hồng Nhan</li>
+            <li onclick="changeSong('songs/See-Tinh.mp3', 'images/See-Tinh.jpg')">See Tình</li>
+            <li onclick="changeSong('songs/ViAnhLaGio-LilK-4766315.mp3', 'images/ViAnhLaGio-LilK-4766315.jpg')">Vì Anh Là Gió</li>
+            <li onclick="changeSong('songs/YeuDonPhuongLaGi.mp3', 'images/Yeu-Don-Phuong.jpg')">Yêu Đơn Phương Là Gì</li>
         </ul>
     </div>
     <div class="footer">
